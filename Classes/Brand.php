@@ -24,9 +24,23 @@ include_once($filepath.'/../Classes/Config.php');
         
         public function addBrand($brandname){
             
+            $this -> sql = "SELECT brandName FROM brand WHERE brandName = '$brandname'; ";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+            if($this -> res -> num_rows > 0){
+                return "all ready exist!!";
+            }else{
+                
             $this -> sql = "INSERT INTO `brand` (`brandId`, `brandName`) VALUES (NULL, '$brandname');";
             $this -> res = mysqli_query($this -> conn, $this -> sql);
-            return $this -> res;
+//            return $this -> res;   
+            if($this -> res){
+                return "Success!!";
+            }else{
+                return "Failed!!";
+            }
+            }
+            
+            
  
         }
         
@@ -35,6 +49,17 @@ include_once($filepath.'/../Classes/Config.php');
             $this -> res = mysqli_query($this -> conn, $this -> sql);
             return $this -> res;
         }
+        
+        public function delBrandById($id){
+            $this -> sql = "DELETE FROM `brand` WHERE brandId = '$id';";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+//            return $this -> res;
+            if($this -> res){
+                return "Success!!";
+            }else{
+                return "Failed!!";
+            }
+         }
         
     }
 ?>

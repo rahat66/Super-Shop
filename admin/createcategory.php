@@ -21,9 +21,9 @@ include_once($filepath.'/../Classes/Category.php');
                     <div class="panel-heading">
                         <h3 class="panel-title">CREATE CATEGORY<span style="color:red;" ><?php
                             if(isset($result)){
-                                echo "Success!";
+                                echo $result;
                             }
-                            ?></span></h3>
+                            ?></span><span style="float:right;"><a class="panel-title" href="showcategory.php">Back</a></span></h3>
                     </div>
                     <div class="panel-body">
                     <form action="createcategory.php" method="post">

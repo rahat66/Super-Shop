@@ -21,9 +21,9 @@ include_once($filepath.'/../Classes/Brand.php');
                     <div class="panel-heading">
                         <h3 class="panel-title">CREATE BRAND<span style="color:red;" ><?php
                             if(isset($result)){
-                                echo "Success!";
+                                echo $result;
                             }
-                            ?></span></h3>
+                            ?></span><span style="float:right;"><a class="panel-title" href="showbrand.php">Back</a></span></h3>
                     </div>
                     <div class="panel-body">
                     <form action="createbrand.php" method="post">

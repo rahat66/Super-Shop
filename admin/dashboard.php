@@ -1,6 +1,10 @@
 <?php
 include('Library/header.php');
 ?>
+<?php
+include('Library/sidebar.php');
+?>
+<!--
     <div class="container-fluid">
       <div class="row mgtop">
         <div class="col-md-3 col-sm-12 col-xs-12 nav-sidebar">
@@ -14,7 +18,7 @@ include('Library/header.php');
                             <td><a href="#">Overview</a></td>
                         </tr>
                         <tr>
-                            <td><a href="#">Product</a></td>
+                            <td><a href="showproduct.php">Product</a></td>
                         </tr>
                         <tr>
                             <td><a href="#">Category</a></td>
@@ -32,6 +36,7 @@ include('Library/header.php');
                 </table>
             </div>  
         </div>
+-->
         <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="row">
                 <div class="col-md-4 col-sm-12 mgbottom20">

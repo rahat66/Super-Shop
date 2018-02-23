@@ -22,7 +22,7 @@ include_once($filepath.'/../Classes/Product.php');
                             if(isset($insertProduct)){
                                 echo "success!!";
                             }
-                            ?></span></h3>
+                            ?></span><span style="float:right;"><a class="panel-title" href="showproduct.php">Back</a></span></h3>
                     </div>
                     <div class="panel-body">
                     <form action="" method="post" enctype="multipart/form-data">
