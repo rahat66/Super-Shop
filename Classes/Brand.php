@@ -61,5 +61,18 @@ include_once($filepath.'/../Classes/Config.php');
             }
          }
         
+        public function totalNumOfBrand(){
+            $this -> sql = "SELECT COUNT(brandId) AS 'totalbrand' FROM brand;";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+            if($this -> res){
+                $tbrnd = $this -> res -> fetch_assoc();
+                $rs    = $tbrnd['totalbrand'];
+                return $rs;
+            }else{
+                return "error!";
+            }
+            
+        }
+        
     }
 ?>

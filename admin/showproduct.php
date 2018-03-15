@@ -1,5 +1,13 @@
 <?php
 include('Library/header.php');
+$filepath=realpath(dirname(__FILE__));
+//echo $filepath;
+include_once($filepath.'/../Classes/Product.php');
+    $pd = new Product();
+    $getPro = $pd -> getAllProduct();
+    echo '<pre>';
+    print_r($getPro);
+    echo'</pre>';
 ?>
 <?php
 include('Library/sidebar.php');

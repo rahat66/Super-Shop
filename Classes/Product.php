@@ -64,6 +64,18 @@ include_once($filepath.'/../Classes/Config.php');
             $this -> res = mysqli_query($this -> conn, $this -> sql);
             return $this -> res;
         }
+    
+    public function totalNumOfProduct(){
+        $this -> sql = "SELECT COUNT(productId) AS 'totalpro' FROM product;";
+        $this -> res = mysqli_query($this -> conn, $this -> sql);
+        if($this -> res){
+            $tpro = $this -> res -> fetch_assoc();
+            $res   = $tpro['totalpro'];
+            return $res;
+        }else{
+            return "error!";
+        }
+    }
         
     } 
 ?>

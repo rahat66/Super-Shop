@@ -63,5 +63,18 @@ include_once($filepath.'/../Classes/Config.php');
             }
          }
         
+        public function totalNumOfCategory(){
+            $this -> sql = "SELECT COUNT(catId) as totalCat FROM category;";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+            if($this -> res){
+                
+                $tcat = $this -> res -> fetch_assoc();
+                $rs    = $tcat['totalCat'];
+                return $rs;
+            }else{
+                return "error!";
+            }
+        }
+        
     }
 ?>
