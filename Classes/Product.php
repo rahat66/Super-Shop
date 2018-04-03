@@ -60,10 +60,54 @@ include_once($filepath.'/../Classes/Config.php');
         
     public function getAllProduct(){
         
-            $this -> sql = "SELECT * FROM `product`; ";
+            $this -> sql = "SELECT productId, productName, category.catName, brand.brandName, body, image, price, type FROM product, category, brand WHERE product.catId = category.catId AND product.brandId = brand.brandId;";
             $this -> res = mysqli_query($this -> conn, $this -> sql);
             return $this -> res;
         }
+        
+    public function getProductByID($proId){
+            $this -> sql = "SELECT productId, productName, category.catName, brand.brandName, body, image, price, type FROM product, category, brand WHERE product.catId = category.catId AND product.brandId = brand.brandId AND product.productId='$proId';";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+            return $this -> res;  
+    }
+        
+   public function updateProduct($data, $file, $id){
+        $productName = $data['productName']; 
+        $catId       = $data['catId']; 
+        $brandId     = $data['brandId']; 
+        $body        = $data['body']; 
+        $price       = $data['price'];  
+        $type        = $data['type'];
+        $imgPath     = $data['imgpth'];
+            
+            
+            $permited  = array('jpg', 'jpeg', 'png', 'gif');
+            $file_name = $file['image']['name'];
+            $file_size = $file['image']['size'];
+            $file_temp = $file['image']['tmp_name'];
+
+            $div      = explode('.', $file_name);
+            $file_ext = strtolower(end($div));
+            $unique_image = substr(md5(time()), 0, 10).'.'.$file_ext;
+            $uploaded_image = "uploads/".$unique_image;
+
+            if(!empty($file_name)){
+                unlink($imgPath);
+                move_uploaded_file($file_temp, $uploaded_image);
+            $this -> sql = "UPDATE `product` SET `productName` = '$productName', `catId` = '$catId', `brandId` = '$brandId', `body` = '$body', `price` = '$price', `image` = '$uploaded_image', `type` = '$type' WHERE `product`.`productId` = '$id' ;";
+            
+                   $this -> res = mysqli_query($this -> conn, $this -> sql);;
+                    return $this -> res;
+                        
+            }else {
+                
+            $this -> sql = "UPDATE `product` SET `productName` = '$productName', `catId` = '$catId', `brandId` = '$brandId', `body` = '$body', `price` = '$price', `type` = '$type' WHERE `product`.`productId` = '$id' ;";
+            
+                   $this -> res = mysqli_query($this -> conn, $this -> sql);;
+                    return $this -> res;
+            }
+        
+   }
     
     public function totalNumOfProduct(){
         $this -> sql = "SELECT COUNT(productId) AS 'totalpro' FROM product;";
@@ -75,6 +119,21 @@ include_once($filepath.'/../Classes/Config.php');
         }else{
             return "error!";
         }
+    }
+        
+    public function deleteProductByID($delId){
+        $this -> sql = "SELECT image FROM `product` WHERE productId = '$delId';";
+        $this -> res = $this -> res = mysqli_query($this -> conn, $this -> sql);
+        $tmp = $this -> res -> fetch_assoc();
+        $upimg = $tmp['image'];
+        if(isset($upimg)){
+            unlink($upimg);
+        }
+        
+        $this -> sql = "DELETE FROM `s_shop`.`product` WHERE `product`.`productId` = '$delId'";
+        $this -> res = mysqli_query($this -> conn, $this -> sql);;
+        return $this -> res;
+
     }
         
     } 

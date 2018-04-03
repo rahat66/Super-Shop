@@ -52,7 +52,7 @@ include('Library/sidebar.php');
                             <tr>
                                 <td><?php echo $i; ?></td>
                                 <td><?php echo $value['catName'];?></td>
-                                <td><a class="btn-link" href="#" >Edit</a> || <a class="btn-link" href="?delcat=<?php echo $value['catId'];?>">Delete</a></td>
+                                <td><a class="btn-link" href="editcategory.php?editcat=<?php echo $value['catId']; ?>" >Edit</a> || <a class="btn-link" href="?delcat=<?php echo $value['catId'];?>">Delete</a></td>
                             </tr>
                             <?php }}?>
                         </tbody>

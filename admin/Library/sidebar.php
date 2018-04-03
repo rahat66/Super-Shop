@@ -1,4 +1,4 @@
- <div class="container-fluid">
+ <div class="container">
       <div class="row mgtop">
         <div class="col-md-3 col-sm-12 col-xs-12 nav-sidebar">
             <div class="table-responsive">

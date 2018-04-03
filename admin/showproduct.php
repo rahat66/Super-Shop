@@ -4,10 +4,14 @@ $filepath=realpath(dirname(__FILE__));
 //echo $filepath;
 include_once($filepath.'/../Classes/Product.php');
     $pd = new Product();
+    if(isset($_GET['delpro_id'])){
+        $proId  = $_GET['delpro_id'];
+        $delpro = $pd -> deleteProductByID($proId);
+    }
     $getPro = $pd -> getAllProduct();
-    echo '<pre>';
-    print_r($getPro);
-    echo'</pre>';
+//    echo '<pre>';
+//    print_r($getPro);
+//    echo'</pre>';
 ?>
 <?php
 include('Library/sidebar.php');
@@ -33,13 +37,22 @@ include('Library/sidebar.php');
                             
                         </thead>
                         <tbody>
-                            <td>01</td>
-                            <td>J1</td>
-                            <td>Samsung</td>
-                            <td>Samsung</td>
-                            <td><img src="uploads/bfa6d735c0.png" height="40px" /></td>
-                            <td>1200</td>
-                            <td><a class="btn-link" href="#" >Edit</a> || <a class="btn-link" href="#">Delete</a></td>
+                            <?php 
+                            if(isset($getPro)){
+                                $i = 0;
+                                while($value = $getPro -> fetch_assoc()){
+                                $i++;    
+                            ?>
+                            <tr>
+                                <td><?php echo $i; ?></td>
+                                <td><?php echo $value['productName'];?></td>
+                                <td><?php echo $value['catName'];?></td>
+                                <td><?php echo $value['brandName'];?></td>
+                                <td><img src="<?php echo $value['image'];?>" height="40px" /></td>
+                                <td><?php echo $value['price'];?></td>
+                                <td><a class="btn-link" href="editproduct.php?pro_id=<?php echo $value['productId'];?>">Edit</a> || <a class="btn-link" href="?delpro_id=<?php echo $value['productId'];?>">Delete</a></td>
+                            </tr>
+                            <?php }}?>
                         </tbody>
                         <tfoot></tfoot>
                     </table>

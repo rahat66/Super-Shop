@@ -9,6 +9,9 @@ include_once($filepath.'/../Classes/Brand.php');
         $id  = $_GET['delbrand'];
 //        echo $id;
         $del = $brand -> delBrandById($id); 
+//        echo '<pre>';
+//        print_r($del);
+//        echo '</pre>';
     }
     $result = $brand -> getAllBrand();
 ?>
@@ -44,7 +47,7 @@ include('Library/sidebar.php');
                             <tr>
                                 <td><?php echo $i;?></td>
                                 <td><?php echo $value['brandName'];?></td>
-                                <td><a class="btn-link" href="#" >Edit</a> || <a class="btn-link" href="?delbrand=<?php echo $value['brandId']; ?>">Delete</a></td>
+                                <td><a class="btn-link" href="editbrand.php?editbrand=<?php echo $value['brandId']; ?>" >Edit</a> || <a class="btn-link" href="?delbrand=<?php echo $value['brandId']; ?>">Delete</a></td>
                             </tr>
                             <?php }} ?>
                         </tbody>

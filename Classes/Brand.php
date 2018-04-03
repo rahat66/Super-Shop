@@ -50,16 +50,42 @@ include_once($filepath.'/../Classes/Config.php');
             return $this -> res;
         }
         
-        public function delBrandById($id){
-            $this -> sql = "DELETE FROM `brand` WHERE brandId = '$id';";
+        public function getBrandByID($bId){
+            $this -> sql = "SELECT * FROM `brand` WHERE brandId = '$bId' ";
             $this -> res = mysqli_query($this -> conn, $this -> sql);
-//            return $this -> res;
-            if($this -> res){
-                return "Success!!";
+            return $this -> res;
+        }
+        
+        public function delBrandById($id){
+            
+            $this -> sql = "SELECT product.* FROM product,brand WHERE brand.brandId=product.brandId AND brand.brandId = '$id';";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+            if($this -> res -> num_rows > 0){
+                  return "Failed!!";
             }else{
-                return "Failed!!";
+                $this -> sql = "DELETE FROM `brand` WHERE brandId = '$id';";
+                $this -> res = mysqli_query($this -> conn, $this -> sql);
+    //            return $this -> res;
+                if($this -> res){
+                    return "Success!!";
+                }else{
+                    return "Failed!!";
+                }
             }
+            
+
          }
+        
+        public function editBrand($bname, $bid){
+            $this -> sql = "UPDATE `brand` SET `brandName` = '$bname' WHERE `brand`.`brandId` = '$bid' ;";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+    //            return $this -> res;
+                if($this -> res){
+                    return "Success!!";
+                }else{
+                    return "Failed!!";
+                }
+        }
         
         public function totalNumOfBrand(){
             $this -> sql = "SELECT COUNT(brandId) AS 'totalbrand' FROM brand;";

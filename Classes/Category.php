@@ -52,16 +52,43 @@ include_once($filepath.'/../Classes/Config.php');
  
         }
         
-         public function delCatById($id){
-            $this -> sql = "DELETE FROM `category` WHERE catId = '$id';";
+        public function getCatByID($catId){
+           $this -> sql = "SELECT * FROM `category` WHERE catId = '$catId';";
             $this -> res = mysqli_query($this -> conn, $this -> sql);
-//            return $this -> res;
-            if($this -> res){
-                return "Success!!";
+            return $this -> res; 
+        }
+        
+         public function delCatById($id){
+            
+             $this -> sql = "SELECT product.* FROM product,category WHERE category.catId=product.catId AND category.catId = '$id';";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+            if($this -> res -> num_rows > 0){
+                  return "Failed!!";
             }else{
-                return "Failed!!";
+                
+                $this -> sql = "DELETE FROM `category` WHERE catId = '$id';";
+                $this -> res = mysqli_query($this -> conn, $this -> sql);
+    //            return $this -> res;
+                if($this -> res){
+                    return "Success!!";
+                }else{
+                    return "Failed!!";
+                }
             }
+             
+            
          }
+        
+        public function updateCat($catName, $catId){
+            $this -> sql = "UPDATE `category` SET `catName` = '$catName' WHERE `category`.`catId` = '$catId' ;";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+    //            return $this -> res;
+                if($this -> res){
+                    return "Success!!";
+                }else{
+                    return "Failed!!";
+                }
+        }
         
         public function totalNumOfCategory(){
             $this -> sql = "SELECT COUNT(catId) as totalCat FROM category;";
