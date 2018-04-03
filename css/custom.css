@@ -2,6 +2,10 @@ body{
      font-family: 'Roboto', sans-serif;
 }
 
+.shadow{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 .header_top{
     margin-top: 12px;
     margin-bottom: 12px;
@@ -29,8 +33,10 @@ margin-top: 78px;
 }
 
 .cart_sp{
+/*
     width: 138px;
     height: 45px;
+*/
     margin-top: 78px;
 }
 

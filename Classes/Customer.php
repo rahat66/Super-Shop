@@ -1,4 +1,5 @@
 <?php
+ob_start();
 $filepath=realpath(dirname(__FILE__));
 //echo $filepath;
 include_once($filepath.'/../Classes/Config.php');
@@ -22,8 +23,29 @@ include_once($filepath.'/../Classes/Config.php');
         }
         
         
-        public function addCustomer(){
-            
+        public function addCustomer($name, $email, $pass, $num, $divi, $dist, $add){
+            $this -> sql = "INSERT INTO `customer` (`custId`, `custName`, `custEmail`, `custPass`, `number`, `division`, `district`, `address`) VALUES (NULL, '$name', '$email', '$pass', '$num', '$divi', '$dist', '$add');";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+                if($this -> res){
+                    return "Success!!";
+                }else{
+                    return "Failed!!";
+                } 
+        }
+        
+        public function customerLogIn($uname, $upass){
+            $this -> sql = "SELECT * FROM `customer` WHERE custEmail = '$uname' AND custPass = '$upass';";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+            if($this -> res -> num_rows > 0){
+                $value = $this -> res -> fetch_assoc();
+                $_SESSION['custId'] = $value['custId'];
+                $_SESSION['custName'] = $value['custName'];
+                echo "<script type='text/javascript'>  window.location='index.php'; </script>";
+                exit();
+            }else{
+                return "Email or password not match!";
+            }
         }
     }
+ob_end_flush();
 ?>

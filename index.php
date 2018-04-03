@@ -10,7 +10,7 @@ include_once('Library/header.php');
                 <hr/>
                 
                 
-                <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="col-md-4 col-sm-6 col-xs-12 shadow">
                     <a href="#">
                     <img class="img-responsive img-thumbnail" src="img/pic3.png" /></a>
                     <h2>Lorem Ipsum is simply</h2>

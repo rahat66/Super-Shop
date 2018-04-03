@@ -1,6 +1,8 @@
 <?php
+session_start();
 $filepath=realpath(dirname(__FILE__));
 //echo $filepath;
+
 include_once($filepath.'/../Classes/Category.php');
 include_once($filepath.'/../Classes/Brand.php');
     $cat      = new Category();
@@ -37,7 +39,7 @@ include_once($filepath.'/../Classes/Brand.php');
               <div class="col-md-3 col-sm-6 col-xs-12">
                   <img class="img-responsive" src="img/Super-Shop.png" alt="Logo image" />
                   </div>
-              <div class="col-md-3 col-sm-6 col-xs-12 search_btn">
+              <div class="col-md-5 col-sm-6 col-xs-12 search_btn">
                     <div class="input-group ">
                       <input style="height: 46px;" type="text" class="form-control" placeholder="Search">
                       <span class="input-group-btn">
@@ -45,11 +47,37 @@ include_once($filepath.'/../Classes/Brand.php');
                       </span>
                   </div>
                   </div>
-              <div class="col-md-3 col-sm-6 col-xs-12 cart_btn">
-                  <a class="btn btn-default cart_sp" href="cart.php" ><span><img src="img/header_cart.png" alt="cart" /></span><span>Cart(empty)</span></a>
+              <div class="col-md-2 col-sm-6 col-xs-12 cart_btn">
+                  <a class="btn btn-success btn-lg cart_sp" href="cart.php" ><span class="glyphicon glyphicon-shopping-cart">Cart</span></a>
                   </div>
-              <div class="col-md-3 col-sm-6 col-xs-12 ">
-                  <a class=" btn btn-default btn-lg login_btn" href="login.php" role="button">Login</a>
+                  <?php
+                  if(isset($_GET['action'])){
+                      $get = $_GET['action'];
+                      session_destroy();
+                      header('Location:login.php');
+                  }
+                  ?>
+              <div class="col-md-2 col-sm-6 col-xs-12 ">
+                  <?php
+                  
+                  if(isset($_SESSION['custId'])){ ?>
+                  <div class="btn-group login_btn">
+                      <button type="button" class="btn btn-info btn-lg dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"><?php echo $_SESSION['custName']; ?></span> <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">View Profile</a></li>
+                        <li><a href="#">Edit Profile</a></li>
+                        <li><a href="#">Changle Password</a></li>
+                        <li class="divider"></li>
+                        <li><a href="?action=logout">Logout</a></li>
+                      </ul>
+                    </div>
+<!--                     <a class=" btn btn-default btn-lg login_btn" href="?action=logout" role="button">Logout</a> -->
+                <?php }else{
+                  ?>
+                  <a class=" btn btn-primary btn-lg login_btn" href="login.php" role="button">Sign in</a>
+                  <?php }?>
                   </div>
               </div>
 <!----- ***********************Menu******************************** -->
