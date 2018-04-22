@@ -27,12 +27,12 @@ include_once($filepath.'/../Classes/Config.php');
     
     public function createProduct($data, $file){
         
-        $productName = $data['productName']; 
-        $catId       = $data['catId']; 
-        $brandId     = $data['brandId']; 
-        $body        = $data['body']; 
-        $price       = $data['price'];  
-        $type        = $data['type'];
+        $productName = mysqli_real_escape_string($this -> conn, $data['productName']) ; 
+        $catId       = mysqli_real_escape_string($this -> conn, $data['catId']); 
+        $brandId     = mysqli_real_escape_string($this -> conn, $data['brandId']); 
+        $body        = mysqli_real_escape_string($this -> conn, $data['body']); 
+        $price       = mysqli_real_escape_string($this -> conn, $data['price']);  
+        $type        = mysqli_real_escape_string($this -> conn, $data['type']);
             
             
             $permited  = array('jpg', 'jpeg', 'png', 'gif');
@@ -134,6 +134,30 @@ include_once($filepath.'/../Classes/Config.php');
         $this -> res = mysqli_query($this -> conn, $this -> sql);;
         return $this -> res;
 
+    }
+        
+    public function featuredProduct(){
+        $this -> sql = "SELECT productId, productName, category.catName, brand.brandName, body, image, price, type FROM product, category, brand WHERE product.catId = category.catId AND product.brandId = brand.brandId AND product.type='0' ORDER BY product.productId DESC LIMIT 6 ";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+            return $this -> res; 
+    }
+    
+    public function newProduct(){
+        $this -> sql = "SELECT productId, productName, category.catName, brand.brandName, body, image, price, type FROM product, category, brand WHERE product.catId = category.catId AND product.brandId = brand.brandId AND product.type='1' ORDER BY product.productId DESC LIMIT 6";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+            return $this -> res; 
+    }
+        
+    public function productByCatID($catId){
+         $this -> sql = "SELECT productId, productName, category.catName, brand.brandName, body, image, price, type FROM product, category, brand WHERE product.catId = category.catId AND product.brandId = brand.brandId AND product.catId='$catId' ORDER BY product.productId DESC ;";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+            return $this -> res; 
+    }
+        
+    public function productByCatName($catname, $pid){
+         $this -> sql = "SELECT productId, productName, category.catName, brand.brandName, body, image, price, type FROM product, category, brand WHERE product.catId = category.catId AND product.brandId = brand.brandId AND category.catName='$catname' AND product.productId != '$pid' ORDER BY product.productId DESC   LIMIT 6 ;";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+            return $this -> res; 
     }
         
     } 

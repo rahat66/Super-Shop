@@ -39,14 +39,17 @@ include_once($filepath.'/../Classes/Brand.php');
               <div class="col-md-3 col-sm-6 col-xs-12">
                   <img class="img-responsive" src="img/Super-Shop.png" alt="Logo image" />
                   </div>
+                  
               <div class="col-md-5 col-sm-6 col-xs-12 search_btn">
-                    <div class="input-group ">
-                      <input style="height: 46px;" type="text" class="form-control" placeholder="Search">
-                      <span class="input-group-btn">
-                      <button class="btn btn-default btn-lg" type="button">GO!</button>
-                      </span>
-                  </div>
-                  </div>
+                    <div class="searchArea">
+                        
+                        <form class="basefrm">   
+                            <input style="height: 46px;" type="text" class="form-control" placeholder="Search...">
+                            <button class="btn btn-default btn-lg btnSearch" type="button"><span class="glyphicon glyphicon-search"></span></button>  
+                        </form>
+                    </div>
+              </div>
+                  
               <div class="col-md-2 col-sm-6 col-xs-12 cart_btn">
                   <a class="btn btn-success btn-lg cart_sp" href="cart.php" ><span class="glyphicon glyphicon-shopping-cart">Cart</span></a>
                   </div>
@@ -61,8 +64,8 @@ include_once($filepath.'/../Classes/Brand.php');
                   <?php
                   
                   if(isset($_SESSION['custId'])){ ?>
-                  <div class="btn-group login_btn">
-                      <button type="button" class="btn btn-info btn-lg dropdown-toggle" data-toggle="dropdown">
+                  <div class="btn-group ">
+                      <button type="button" class="btn btn-info btn-lg login_btn dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-user"><?php echo $_SESSION['custName']; ?></span> <span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu" role="menu">

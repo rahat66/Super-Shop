@@ -59,11 +59,11 @@ if(isset($_SESSION['adminId'])){
                         <form action="login.php" method="post">
                             <div class="form-group">
                                 <label>Username</label>
-                                <input type="text" class="form-control" placeholder="user name" name="userName" />
+                                <input type="text" class="form-control" placeholder="user name" name="userName" required />
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="password" class="form-control" placeholder="password" name="userPass" />
+                                <input type="password" class="form-control" placeholder="password" name="userPass" required />
                             </div>
                             <button class="btn btn-primary">Submit</button>
                         </form>

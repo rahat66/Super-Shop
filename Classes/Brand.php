@@ -22,7 +22,9 @@ include_once($filepath.'/../Classes/Config.php');
             $this -> conn = mysqli_connect($this -> uhost, $this -> uuser, $this -> upass, $this -> udb);
         }
         
-        public function addBrand($brandname){
+        public function addBrand($bname){
+             
+            $brandname =  mysqli_real_escape_string($this -> conn, $bname);
             
             $this -> sql = "SELECT brandName FROM brand WHERE brandName = '$brandname'; ";
             $this -> res = mysqli_query($this -> conn, $this -> sql);

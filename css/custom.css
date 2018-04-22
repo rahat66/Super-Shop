@@ -2,8 +2,59 @@ body{
      font-family: 'Roboto', sans-serif;
 }
 
-.shadow{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.imgmaxima {
+    width: 133px;
+    height: 133px;
+}
+.new_pro {
+ 
+    background-color: #F6F8F8;
+    border: 2px solid #eee;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.searchArea {
+	padding: 6px;
+	background-color: #efefef;
+	border: 1px solid #d9d9d9;
+	border-radius: 4px;
+	margin-top: 20px;
+}
+
+.basefrm {
+    position: relative;
+    margin-bottom: 1px;
+}
+
+.btnSearch {
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: #fff;
+	background-color: #4490a5;
+	border-radius: 0;
+	padding: 2px 14px;
+	font-size: 20px;
+	height: 46px;
+}
+
+.sbibod {
+	background-color: #fff;
+    padding: 10px;
+	border-radius: 2px;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16),0 0 0 1px rgba(0,0,0,0.08);
+/*	transition: box-shadow 200ms cubic-bezier(0.4, 0.0, 0.2, 1);*/
+}
+
+
+.divdesign{
+
+    padding: 10px;
+    box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.16),0 0 0 1px rgba(0,0,0,0.08);
+    margin-bottom: 15px;
+    border-radius: 5px;
+    margin-top: 15px;
 }
 
 .header_top{
@@ -12,7 +63,7 @@ body{
 }
 
 .search_btn{
-margin-top: 78px;
+margin-top: 50px;
 }
 .sear_area{
     padding-top: 5px;
@@ -33,10 +84,8 @@ margin-top: 78px;
 }
 
 .cart_sp{
-/*
     width: 138px;
     height: 45px;
-*/
     margin-top: 78px;
 }
 
