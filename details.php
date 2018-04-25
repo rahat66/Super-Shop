@@ -1,7 +1,9 @@
 <?php
 include_once('Library/header.php');
 include('Classes/Product.php');
+include('Classes/Cart.php');
     $product = new Product();
+    $ct      = new Cart();
     $cname;
     $pid;
 if(isset($_GET['proid'])){
@@ -13,6 +15,12 @@ if(isset($_GET['proid'])){
 //    print_r($getP);
 //    echo"</pre>";
     }
+if($_SERVER['REQUEST_METHOD']=='POST'){
+    
+    $quentity = $_POST['qtn'];
+    $addCart  = $ct -> addToCart($quentity,$id);
+}
+
 ?>
 <!--    ******************Body***********************-->
       <div class="container">
@@ -34,7 +42,7 @@ if(isset($_GET['proid'])){
                     <h3>Category:<?php echo $value['catName']; ?></h3>
                     <h3>Brand:<?php echo $value['brandName']; ?></h3>
                     <form class="form-inline" action="" method="post">
-                        <input type="number" value="1" name="qtn" /><a href="cart.php" class="btn btn-sm btn-success" >Buy Now</a>
+                        <input type="number" value="1" name="qtn" /><input type="submit"  value="Buy Now" class="btn btn-sm btn-success" />
                     </form>
                </div>
                 
