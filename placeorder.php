@@ -1,5 +1,32 @@
 <?php
 include_once('Library/header.php');
+if(!isset($_SESSION['custId'])){
+    echo "<script type='text/javascript'>  window.location='login.php'; </script>";
+    exit();
+}
+
+include('Classes/Cart.php');
+include('Classes/Customer.php');
+
+
+$logName = $_SESSION['custName'];
+$logId = $_SESSION['custId'];
+$ct = new Cart();
+$customer = new Customer();
+$getItem = $ct -> getTotalItem();
+                if($getItem){
+                    $rs    = $getItem -> fetch_assoc();
+                    $total = $rs['cnt'];
+                    if($total==0){
+                        header('location:cart.php');
+                    }
+                }
+    
+$getCust = $customer -> getUserById($logId);
+    if(isset($getCust)){
+        $tmp = $getCust -> fetch_assoc();
+        $getNum = $tmp['number'];
+    }
 ?>
 
 <!--    ******************Body***********************-->
@@ -15,23 +42,32 @@ include_once('Library/header.php');
             <li class=" pad_15b">After receiving the parcel, pay to the delivery man.</li>
             </ul>
             <a class="btn btn-success" href="shipping.php">Back</a>
-            <a class="btn btn-primary" href="#">Confirm Order</a>
+            <a class="btn btn-primary" href="orderprocess.php">Confirm Order</a>
         </div>
         <div class="col-md-4 col-sm-12 col-xs-12">
         <div class="sort_cart">
           <label>Order Summary</label>
             <hr/>
-            <h3>You have 1 items in your cart</h3>
+            <h3>You have <?php 
+                    echo $total;
+                ?> items in your cart</h3>
             <hr/>
-            <label>Total:   620.870Tk</label><br/><br/>
-            <label>Shipping:    50 Tk.</label>
+            <label>Total: $ <?php 
+                $getTtl = $ct -> getTotalPrice();
+                if($getTtl){
+                    $rs = $getTtl -> fetch_assoc();
+                    $t  =$rs['ttl'];
+                    echo $t;
+                }
+                ?></label><br/><br/>
+            <label>Shipping:  $ 15</label>
             <hr/>
-            <label style="color:#FF6600;">Payable Total: 670.87Tk.</label>
+            <label style="color:#FF6600;">Payable Total: $ <?php echo $t+15; ?>.</label>
             <hr/>
             <label>Shipping Address</label>
             <hr/>
-            Suravi Saha            <br/>
-            Mobile: 01823348568            </div>
+            <?php echo $logName; ?>            <br/>
+            Mobile: 0<?php echo $getNum; ?>            </div>
         </div>
     
         </div>

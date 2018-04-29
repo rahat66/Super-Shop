@@ -79,6 +79,29 @@ class Cart {
             
             }
     }
+    
+    public function deleteCartBysId(){
+            $sId = session_id();
+            $this -> sql     = "DELETE FROM `cart` WHERE `cart`.`sId` ='$sId'";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+                return $this -> res;
+        
+    }
+    
+    public function getTotalItem(){
+        $sId = session_id();
+        $this -> sql = "SELECT COUNT(cartId) AS cnt FROM cart  WHERE sId='$sId'";
+        $this -> res = mysqli_query($this -> conn, $this -> sql);
+            return $this -> res;
+    }
+    
+    public function getTotalPrice(){
+        $sId = session_id();
+        $this -> sql = "SELECT SUM(product.price*cart.qtn) AS ttl FROM cart,product WHERE cart.productId = product.productId AND sId='$sId' ";
+        $this -> res = mysqli_query($this -> conn, $this -> sql);
+            return $this -> res;
+    }
+    
 }
 ob_end_flush();
 ?>

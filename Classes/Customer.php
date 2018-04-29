@@ -46,6 +46,14 @@ include_once($filepath.'/../Classes/Config.php');
                 return "Email or password not match!";
             }
         }
+        
+        
+        public function  getUserById($custID){
+            $this -> sql = "SELECT * FROM `customer` WHERE custId = '$custID' ";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+                return $this -> res;
+        }
+            
     }
 ob_end_flush();
 ?>
