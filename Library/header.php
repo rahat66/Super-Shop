@@ -69,9 +69,11 @@ include_once($filepath.'/../Classes/Brand.php');
                         <span class="glyphicon glyphicon-user"><?php echo $_SESSION['custName']; ?></span> <span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">View Profile</a></li>
-                        <li><a href="#">Edit Profile</a></li>
-                        <li><a href="#">Changle Password</a></li>
+                        <li><a href="viewprofile.php">View Profile</a></li>
+                        <li><a href="editprofile.php">Edit Profile</a></li>
+                        <li><a href="vieworder.php">View Order</a></li>
+                        <li><a href="viewreview.php">View Review</a></li>
+                        <li><a href="changepass.php">Changle Password</a></li>
                         <li class="divider"></li>
                         <li><a href="?action=logout">Logout</a></li>
                       </ul>

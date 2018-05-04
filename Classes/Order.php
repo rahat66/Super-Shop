@@ -22,9 +22,9 @@ include_once($filepath.'/../Classes/Config.php');
             $this -> conn = mysqli_connect($this -> uhost, $this -> uuser, $this -> upass, $this -> udb);
         }
         
-        public function insertUserOrder($uId){
+        public function insertUserOrder($uId, $tt){
             $uId = $uId;
-            $this -> sql = "INSERT INTO `customerorder` (`orderId`, `custId`, `orderStatus`, `orderDate`) VALUES (NULL, '$uId', '0', CURRENT_DATE())";
+            $this -> sql = "INSERT INTO `customerorder` (`orderId`, `custId`, `orderStatus`, `amount`, `orderDate`) VALUES (NULL, '$uId', '', '$tt', CURRENT_DATE());";
             $this -> res = mysqli_query($this -> conn, $this -> sql);
                 return $this -> res;
         }
@@ -48,6 +48,20 @@ include_once($filepath.'/../Classes/Config.php');
                 return $this -> res;
 
         }
+        
+        public function getTotalOrderByCust($id){
+            $this -> sql = "SELECT COUNT(orderId) AS 'totalorder' FROM customerorder WHERE custId = '$id' ;";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+            $ts = $this -> res -> fetch_assoc();
+                return $ts['totalorder'];
+        }
+        
+        public function getOrderByCust($cid){
+            $this -> sql = "SELECT * FROM customerorder WHERE custId = '$cid' ;";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+                return $this -> res;
+        }
+
         
     }
     ?>

@@ -2,8 +2,10 @@
 include_once('Library/header.php');
 include('Classes/Product.php');
 include('Classes/Cart.php');
+include('Classes/Productreview.php');
     $product = new Product();
     $ct      = new Cart();
+    $pr      = new Prodcutreview();
     $cname;
     $pid;
 if(isset($_GET['proid'])){
@@ -15,11 +17,26 @@ if(isset($_GET['proid'])){
 //    print_r($getP);
 //    echo"</pre>";
     }
-if($_SERVER['REQUEST_METHOD']=='POST'){
+
+
+if(isset( $_SESSION['custId'])){
+     $cId =  $_SESSION['custId'];
+}
+
+if(isset($_POST['rebody'])){
+    $b = $_POST['rebody'];
+    $insertPR = $pr -> insertReviw($id, $cId, $b);
+    
+}
+
+$getPR = $pr -> getReviewByProId($id);
+
+if(isset($_POST['qtn'])){
     
     $quentity = $_POST['qtn'];
     $addCart  = $ct -> addToCart($quentity,$id);
 }
+
 
 ?>
 <!--    ******************Body***********************-->
@@ -59,6 +76,43 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
           </div>
       </div>
+
+<!--********Product reviews*************-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="new_pro">
+                <h2>Reviews</h2>
+            </div>
+            
+            <div class="col-md-offset-2 col-md-8">
+                                <?php
+                    if(isset($getPR)){
+                        while($value = $getPR -> fetch_assoc()){
+
+                ?>
+                <h5 style="color:#3B5998;"><strong><?php echo $value['custName']; ?></strong></h5>
+<!--                <p  style="color:#795D5D;; font-size:5px;"><?php echo $value['date']; ?></p>-->
+                <p><?php echo $value['body']; ?></p>
+                <br/>
+                
+                <?php }} else{
+                       echo '<h3>This item has no review. </h3>' ;
+                    } ?>
+                <?php
+                if(isset($cId)){
+
+                ?>
+                <form action="" method="post">
+                <textarea style="width: 90%; border: 2px solid #F0F0E9;" name="rebody" placeholder="Write a review..."></textarea><br/><br/>
+                <input type="submit" value="Submit" class="btn btn-success" />
+                </form>
+                <?php }?>
+            </div>
+        </div>
+    </div>
+
+
+
 <div class="container-fluid">
      <div class="row">
         <div class="new_pro">
@@ -80,7 +134,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             ?>
          <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="divdesign" >
-                <a href="#">
+                <a href="details.php?proid=<?php echo $value['productId']; ?>">
                 <img class="img-responsive imgmaxima" src="admin/<?php echo $value['image']; ?>" /></a>
                 <h4><?php echo $value['productName']; ?></h4>
                 <p><?php echo $value['brandName']; ?></p>

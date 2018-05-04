@@ -24,7 +24,7 @@ include('Classes/Product.php');
                 
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="divdesign" >
-                        <a href="#">
+                        <a href="details.php?proid=<?php echo $value['productId']; ?>">
                         <img class="img-responsive imgmaxima" src="admin/<?php echo $value['image']; ?>" /></a>
                         <h4><?php echo $value['productName']; ?></h4>
                         <p><?php echo $value['brandName']; ?></p>
@@ -49,7 +49,7 @@ include('Classes/Product.php');
                 
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="divdesign" >
-                        <a href="#">
+                        <a href="details.php?proid=<?php echo $value['productId']; ?>">
                         <img class="img-responsive imgmaxima" src="admin/<?php echo $value['image']; ?>" /></a>
                         <h4><?php echo $value['productName']; ?></h4>
                         <p><?php echo $value['brandName']; ?></p>

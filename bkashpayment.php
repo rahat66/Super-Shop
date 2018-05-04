@@ -33,7 +33,7 @@ $getCust = $customer -> getUserById($logId);
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-sm-12 col-xs-12">
-            <h2  class="hd_cash">Cash on Delivery</h2>
+            <h2  class="hd_cash">bKash Payment</h2>
             <?php 
                 $getTtl = $ct -> getTotalPrice();
                 if($getTtl){
@@ -41,14 +41,22 @@ $getCust = $customer -> getUserById($logId);
                     $t  =$rs['ttl'];
                     
                 ?>
-            <h3 class="cs_h3">Your Payable Amount: <span style="color:#F16565;">Tk. <?php echo $t+15; ?><span></h3>
-            <?php }?>
+            <h3 class="cs_h3">Your Payable Amount: <span style="color:#F16565;">Tk. <?php echo $t+15; ?></span></h3>
+            <?php } ?>
             <h2 class="cs_h3">How to Pay</h2>
             <ul class="list-group mg_15b">
-            <li class="pad_15b ">Click on "Confirm Order".</li>
-            <li class=" pad_15b">You will get the parcel of happiness within 5-7 working days. </li>
-            <li class=" pad_15b">After receiving the parcel, pay to the delivery man.</li>
+            <li class="pad_15b ">Step 1: Dial *247#</li>
+            <li class=" pad_15b">Step 2: Select Payment option 3</li>
+            <li class=" pad_15b">Step 3: Write Merchant Account Number: <strong>018XXXXXXX</strong></li>
+            <li class=" pad_15b">Step 4: Write Order Amount <strong><?php echo $t+15; ?></strong></li>
+            <li class=" pad_15b">Step 5: Write Cart ID in Reference Box <strong>XXXXXX</strong></li>
+            <li class=" pad_15b">Step 6: Write Counter Number: <strong>X</strong></li>
+            <li class=" pad_15b">Step 7: Write Four Digit Secret PIN (XXXX)</li>
             </ul>
+            <br/>
+            <h3 class="cs_h3">Now, You will get a Transaction ID through SMS </h3>
+            <p>Please write down that Transaction ID here:</p>
+            <input class="input-sm" type="text" placeholder="Transaction Id" required /><br/><br/>
             <a class="btn btn-success" href="shipping.php">Back</a>
             <a class="btn btn-primary" href="orderprocess.php">Confirm Order</a>
         </div>

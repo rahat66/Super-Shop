@@ -53,6 +53,33 @@ include_once($filepath.'/../Classes/Config.php');
             $this -> res = mysqli_query($this -> conn, $this -> sql);
                 return $this -> res;
         }
+        
+        public function getNumOfCustomer(){
+            $this -> sql = "SELECT COUNT(custId) AS 'totlacust' FROM `customer`;";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+            if($this -> res){
+                $tbrnd = $this -> res -> fetch_assoc();
+                $rs    = $tbrnd['totlacust'];
+                return $rs;
+            }else{
+                return "error!";
+            }
+        }
+        
+        public function changePassword($pass, $id){
+            $this -> sql = "UPDATE `customer` SET `custPass` = '$pass' WHERE `customer`.`custId` = '$id' ;";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+                return $this -> res;
+        }
+        
+        public function updateCust($cid, $name, $number, $divi, $dis, $add){
+            $this -> sql = "UPDATE `customer` SET `custName` = '$name', `number` = '$number', `division` = '$divi', `district` = '$dis', `address` = '$add' WHERE `customer`.`custId` = '$cid' ;";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+            if($this -> res){
+                     echo "<script type='text/javascript'>  window.location='viewprofile.php'; </script>";
+                     exit();
+                }
+        }
             
     }
 ob_end_flush();

@@ -15,8 +15,13 @@ $od = new Order();
 $customer = new Customer();
 $getCart = $ct -> getCart();
                  if($getCart){
+            $getTtl = $ct -> getTotalPrice();
+            $rs     = $getTtl -> fetch_assoc();
+            $t      = $rs['ttl'];
+            $ttal   =  $t + 15;
+                     
             $uId      = $logId;
-            $iniOrder = $od -> insertUserOrder($uId);
+            $iniOrder = $od -> insertUserOrder($uId, $ttal);
             $oId     = $od -> getLastoId();
 
             while($result = $getCart -> fetch_assoc()){

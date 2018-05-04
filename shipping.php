@@ -25,6 +25,18 @@ $getCust = $customer -> getUserById($logId);
 //    echo"<pre>";
 //    print_r($getCust);
 //    echo"</pre>";
+
+    if(isset($_POST['select'])){
+        $select = $_POST['select'];
+        if($select == 1){
+           echo "<script type='text/javascript'>  window.location='placeorder.php'; </script>";
+           exit(); 
+        }else{
+            echo "<script type='text/javascript'>  window.location='bkashpayment.php'; </script>";
+            exit();
+        }
+    }
+
 ?>
 <!--    ******************Body***********************-->
 <div class="container">
@@ -50,11 +62,12 @@ $getCust = $customer -> getUserById($logId);
                 <input class="r_input_field" type="text" value="<?php echo $value['address']; ?>" name="address" required />
                 <label class="input_label">Payment Method</label>
                 <select class="r_input_field " id="select" name="select">
-                    <option value="1">cash on delivery</option>
+                    <option value="1">Cash on delivery</option>
+                    <option value="2">bKash</option>
                 </select>
                 <a class="btn btn-primary" href="cart.php">Back</a>
 <!--                <input style="float:right; margin-right: 10px;" type="button" class="btn btn-success" value="Submit" />-->
-                <a style="margin-left:80%;"  class="btn btn-success" href="placeorder.php">Next</a>
+                <input type="submit" style="margin-left:80%;"  value="Next" class="btn btn-success"/>
                 <?php } ?>
                 
             </form>

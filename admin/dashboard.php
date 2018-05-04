@@ -5,6 +5,7 @@ $filepath=realpath(dirname(__FILE__));
 include_once($filepath.'/../Classes/Category.php');
 include_once($filepath.'/../Classes/Brand.php');
 include_once($filepath.'/../Classes/Product.php');
+include_once($filepath.'/../Classes/Customer.php');
     
     $brand  = new Brand();
     $tbrand = $brand -> totalNumOfBrand();
@@ -14,6 +15,9 @@ include_once($filepath.'/../Classes/Product.php');
 
     $pro    = new Product();
     $tpro   = $pro -> totalNumOfProduct();
+
+    $cust   = new Customer();
+    $tcust  = $cust -> getNumOfCustomer();
 ?>
 <?php
 include('Library/sidebar.php');
@@ -41,21 +45,30 @@ include('Library/sidebar.php');
                      }
                      ?><br/> brands</a>
                 </div>
-                                <div class="col-md-4 col-sm-12 mgbottom20">
+                
+                <div class="col-md-4 col-sm-12 mgbottom20">
                  <a class="circle-text" href="#">202<br/> orders completed</a>
                 </div>
-                                <div class="col-md-4 col-sm-12 mgbottom20">
+                
+                <div class="col-md-4 col-sm-12 mgbottom20">
                  <a class="circle-text" href="#">202<br/> orders processing</a>
                 </div>
-                                <div class="col-md-4 col-sm-12 mgbottom20">
-                 <a class="circle-text" href="#">202<br/> customers</a>
+                
+                <div class="col-md-4 col-sm-12 mgbottom20">
+                 <a class="circle-text" href="#"><?php
+                    if(isset($tcust)){
+                        echo $tcust;
+                    }
+                    ?><br/> customers</a>
                 </div>
 
             </div>
         </div>
 
+<!--
       </div>
     </div>
+-->
 
 <?php
 include('Library/footer.php');
