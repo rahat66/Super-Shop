@@ -160,5 +160,11 @@ include_once($filepath.'/../Classes/Config.php');
             return $this -> res; 
     }
         
+    public function searchProduct($key){
+        $this -> sql = "SELECT DISTINCT productId, productName, category.catName, brand.brandName, body, image, price, type FROM product, brand, category WHERE productName LIKE '%$key%' AND product.catId = category.catId AND product.brandId = brand.brandId ORDER BY product.productId DESC ";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+            return $this -> res;
+    }
+        
     } 
 ?>

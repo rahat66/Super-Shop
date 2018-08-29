@@ -79,7 +79,7 @@ $getCust = $customer -> getUserById($logId);
                     echo $total;
                 ?> items in your cart</h3>
             <hr/>
-            <label>Total:$  
+            <label>Total:Tk.  
             <?php 
                 $getTtl = $ct -> getTotalPrice();
                 if($getTtl){
@@ -89,10 +89,10 @@ $getCust = $customer -> getUserById($logId);
                 }
                 ?>
             </label><br/><br/>
-            <label>Shipping: $ 15</label>
+            <label>Shipping: Tk. 50</label>
             <hr/>
-            <label style="color:#FF6600;">Payable Total: $ 
-            <?php echo $t+15; ?>
+            <label style="color:#FF6600;">Payable Total: Tk.  
+            <?php echo $t+50; ?>
             </label>
             </div>
         </div>

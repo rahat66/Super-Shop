@@ -28,7 +28,7 @@ include('Classes/Product.php');
                         <img class="img-responsive imgmaxima" src="admin/<?php echo $value['image']; ?>" /></a>
                         <h4><?php echo $value['productName']; ?></h4>
                         <p><?php echo $value['brandName']; ?></p>
-                        <p>$<?php echo $value['price']; ?></p>
+                        <p>Tk. <?php echo $value['price']; ?></p>
                         <a href="details.php?proid=<?php echo $value['productId']; ?>" class="btn btn-sm btn-success" >Details</a>
                     </div>
                 </div>
@@ -53,7 +53,7 @@ include('Classes/Product.php');
                         <img class="img-responsive imgmaxima" src="admin/<?php echo $value['image']; ?>" /></a>
                         <h4><?php echo $value['productName']; ?></h4>
                         <p><?php echo $value['brandName']; ?></p>
-                        <p>$<?php echo $value['price']; ?></p>
+                        <p>Tk. <?php echo $value['price']; ?></p>
                         <a href="details.php?proid=<?php echo $value['productId']; ?>" class="btn btn-sm btn-success" >Details</a>
                     </div>
                 </div>

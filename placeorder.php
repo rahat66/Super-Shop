@@ -41,7 +41,8 @@ $getCust = $customer -> getUserById($logId);
                     $t  =$rs['ttl'];
                     
                 ?>
-            <h3 class="cs_h3">Your Payable Amount: <span style="color:#F16565;">Tk. <?php echo $t+15; ?><span></h3>
+            
+            <h3 class="cs_h3">Your Payable Amount: <span style="color:#F16565;">Tk. <?php echo $t+50; ?></span></h3>
             <?php }?>
             <h2 class="cs_h3">How to Pay</h2>
             <ul class="list-group mg_15b">
@@ -60,7 +61,7 @@ $getCust = $customer -> getUserById($logId);
                     echo $total;
                 ?> items in your cart</h3>
             <hr/>
-            <label>Total: $ <?php 
+            <label>Total: Tk. <?php 
                 $getTtl = $ct -> getTotalPrice();
                 if($getTtl){
                     $rs = $getTtl -> fetch_assoc();
@@ -68,9 +69,9 @@ $getCust = $customer -> getUserById($logId);
                     echo $t;
                 }
                 ?></label><br/><br/>
-            <label>Shipping:  $ 15</label>
+            <label>Shipping:  Tk. 50</label>
             <hr/>
-            <label style="color:#FF6600;">Payable Total: $ <?php echo $t+15; ?>.</label>
+            <label style="color:#FF6600;">Payable Total: Tk. <?php echo $t+50; ?>.</label>
             <hr/>
             <label>Shipping Address</label>
             <hr/>

@@ -33,7 +33,7 @@ if(isset( $_SESSION['custId'])){
                     ?>
                     <p><strong>NAME:</strong> <?php echo $value['custName']; ?></p>
                     <p><strong>EMAIL:</strong> <?php echo $value['custEmail']; ?></p>
-                    <p><strong>MOBILE:</strong> <?php echo $value['number']; ?></p>
+                    <p><strong>MOBILE:</strong> 0<?php echo $value['number']; ?></p>
                     <p><strong>TOTAL ORDERS:</strong> <?php if(isset($totalorder)) echo $totalorder; ?> <a href="vieworder.php" class="btn-link">View</a></p>
                     <p><strong>TOTAL REVIEWS:</strong> <?php if(isset($totalreview)) echo $totalreview; ?> <a href="viewreview.php" class="btn-link">View</a></p>
                     <p><strong>ADDRESS:</strong> <?php echo $value['address']; ?></p>

@@ -49,7 +49,7 @@ include('Library/sidebar.php');
                                 <td><?php echo $value['catName'];?></td>
                                 <td><?php echo $value['brandName'];?></td>
                                 <td><img src="<?php echo $value['image'];?>" height="40px" /></td>
-                                <td><?php echo $value['price'];?></td>
+                                <td>Tk. <?php echo $value['price'];?></td>
                                 <td><a class="btn-link" href="editproduct.php?pro_id=<?php echo $value['productId'];?>">Edit</a> || <a class="btn-link" href="?delpro_id=<?php echo $value['productId'];?>">Delete</a></td>
                             </tr>
                             <?php }}?>

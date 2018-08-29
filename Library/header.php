@@ -43,9 +43,9 @@ include_once($filepath.'/../Classes/Brand.php');
               <div class="col-md-5 col-sm-6 col-xs-12 search_btn">
                     <div class="searchArea">
                         
-                        <form class="basefrm">   
-                            <input style="height: 46px;" type="text" class="form-control" placeholder="Search...">
-                            <button class="btn btn-default btn-lg btnSearch" type="button"><span class="glyphicon glyphicon-search"></span></button>  
+                        <form action="searchproduct.php" method="post" class="basefrm">   
+                            <input style="height: 46px;" type="text" class="form-control" placeholder="Search..." name="key">
+                            <button class="btn btn-default btn-lg btnSearch" type="submit"><span class="glyphicon glyphicon-search"></span></button>  
                         </form>
                     </div>
               </div>
@@ -66,7 +66,7 @@ include_once($filepath.'/../Classes/Brand.php');
                   if(isset($_SESSION['custId'])){ ?>
                   <div class="btn-group ">
                       <button type="button" class="btn btn-info btn-lg login_btn dropdown-toggle" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-user"><?php echo $_SESSION['custName']; ?></span> <span class="caret"></span>
+                        <span style="font-size:14px;" class="glyphicon glyphicon-user"><?php echo $_SESSION['custName']; ?></span> <span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu" role="menu">
                         <li><a href="viewprofile.php">View Profile</a></li>
@@ -99,18 +99,6 @@ include_once($filepath.'/../Classes/Brand.php');
 
                                       ?>
                                     <li><a href="productbycat.php?catid=<?php echo $value['catId']?>"><?php echo $value['catName']?></a></li>
-                                    <?php }} ?>
-                                  </ul>
-                                </li>
-                                <li class="dropdown">
-                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Brand <span class="caret"></span></a>
-                                  <ul class="dropdown-menu" role="menu">
-                                    <?php
-                                      if(isset($allBrand)){
-                                          while($value = $allBrand -> fetch_assoc()){
-
-                                      ?>
-                                    <li><a href="productbybrand.php?bid=<?php echo $value['brandId'] ?>"><?php echo $value['brandName']?></a></li>
                                     <?php }} ?>
                                   </ul>
                                 </li>

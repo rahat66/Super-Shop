@@ -4,50 +4,41 @@ if(!isset($_SESSION['custId'])){
     echo "<script type='text/javascript'>  window.location='login.php'; </script>";
     exit();
 }
+include('Classes/Order.php');
+$od = new Order();
 
-include('Classes/Productreview.php');
-    $pr = new Prodcutreview();
-
-if(isset( $_SESSION['custId'])){
-     $cId =  $_SESSION['custId'];
-}
-
-    if(isset($_GET['rid'])){
-        $rid = $_GET['rid'];
-        $removeR = $pr -> deleteReviewById($rid);
+    if(isset($_GET['oid'])){
+        $oid = $_GET['oid'];
+        $getOd = $od -> getOrderDetailsByID($oid);
     }
-
-    $getReview = $pr -> getReviewByCust($cId);
-
 ?>
-
 <div class="container">
     <div class="new_pro">
-        <h2>REVIES</h2>
+        <h2>ORDER DETAILS</h2>
     </div>
     <div class="row">
         <div class="table-responsive">
             <table class="table table-bordered table-condensed">
                 <thead>
-                    <th>SL</th>
-                    <th>Date</th>
-                    <th>Product</th>
-                    <th>Content</th>
-                    <th>Action</th>
+                    <th style="widht:10%;">SL</th>
+                    <th style="widht:25%;">Product Name</th>
+                    <th style="widht:25%;">Image</th>
+                    <th style="widht:25%;">Price</th>
+                    <th style="widht:15%;">Quentity</th>
                 </thead>
                 <tbody>
                         <?php
-                        if(isset($getReview)){
+                        if(isset($getOd)){
                             $i = 0;
-                            while($value = $getReview -> fetch_assoc()){
+                            while($value = $getOd -> fetch_assoc()){
                                 $i++;
                     ?>
                     <tr>
                         <td><?php echo $i; ?></td>
-                        <td><?php echo $value['date']; ?></td>
                         <td><?php echo $value['productName']; ?></td>
-                        <td><?php echo $value['body']; ?></td>
-                        <td><a href="?rid=<?php echo $value['reviewId']; ?>" class="btn btn-link" >Remove</a></td>
+                        <td><img class="img-responsive" src="admin/<?php echo $value['image']; ?>" width="30px" height="35px" /></td>
+                        <td>Tk. <?php echo $value['price']; ?></td>
+                        <td><?php echo $value['qtn']; ?></td>
                     </tr>
                     <?php }} ?>
                 </tbody>
@@ -57,7 +48,6 @@ if(isset( $_SESSION['custId'])){
         </div>
     </div>
 </div>
-
 <?php
 include_once('Library/footer.php');
 ?>

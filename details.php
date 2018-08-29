@@ -55,7 +55,7 @@ if(isset($_POST['qtn'])){
                 
                 <div class="col-md-4 col-sm-12 col-xs-12">
                     <h1 class="title"><?php echo $value['productName']; ?></h1>
-                    <h3>Price:<?php echo $value['price']; ?></h3>
+                    <h3>Price:Tk. <?php echo $value['price']; ?></h3>
                     <h3>Category:<?php echo $value['catName']; ?></h3>
                     <h3>Brand:<?php echo $value['brandName']; ?></h3>
                     <form class="form-inline" action="" method="post">

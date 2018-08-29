@@ -15,7 +15,7 @@ include_once($filepath.'/../Classes/Product.php');
 
 
     if($_SERVER['REQUEST_METHOD']=='POST'){
-
+        echo $_POST['price'];
          $updateProduct = $product -> updateProduct($_POST, $_FILES, $proId);
     }
 
@@ -29,7 +29,7 @@ include_once($filepath.'/../Classes/Product.php');
             <div class="col-md-offset-3 col-md-6">
                 <div class="panel panel-primary ">
                     <div class="panel-heading">
-                        <h3 class="panel-title">CREATE PRODUCT<span style="color:red;" ><?php
+                        <h3 class="panel-title">UPDATE PRODUCT<span style="color:red;" ><?php
                             if(isset($insertProduct)){
                                 echo "success!!";
                             }

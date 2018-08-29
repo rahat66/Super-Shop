@@ -18,7 +18,7 @@ $getCart = $ct -> getCart();
             $getTtl = $ct -> getTotalPrice();
             $rs     = $getTtl -> fetch_assoc();
             $t      = $rs['ttl'];
-            $ttal   =  $t + 15;
+            $ttal   =  $t + 50;
                      
             $uId      = $logId;
             $iniOrder = $od -> insertUserOrder($uId, $ttal);

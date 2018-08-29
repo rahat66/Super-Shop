@@ -57,7 +57,51 @@ include_once($filepath.'/../Classes/Config.php');
         }
         
         public function getOrderByCust($cid){
-            $this -> sql = "SELECT * FROM customerorder WHERE custId = '$cid' ;";
+            $this -> sql = "SELECT * FROM customerorder WHERE custId = '$cid' ORDER BY orderId DESC;";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+                return $this -> res;
+        }
+        
+        public function getTotalProcessingOrder(){
+            $this -> sql = "SELECT COUNT(orderId) AS 'totalP' FROM customerorder WHERE orderStatus = '0';";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+            $ts = $this -> res -> fetch_assoc();
+            return $ts['totalP'];
+        }
+        
+        public function getTotalCompleteOrder(){
+            $this -> sql = "SELECT COUNT(orderId) AS 'totalC' FROM customerorder WHERE orderStatus = '1' ;";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+            $ts = $this -> res -> fetch_assoc();
+            return $ts['totalC'];
+        }
+        
+        public function getProcessingOrder(){
+            $this -> sql = "SELECT customerorder.*, customer.custName FROM customerorder,customer WHERE customerorder.custId = customer.custId AND customerorder.orderStatus = '0' ;";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+                return $this -> res;
+        }
+        
+        public function getCompletedOrder(){
+            $this -> sql = "SELECT customerorder.*, customer.custName FROM customerorder,customer WHERE customerorder.custId = customer.custId AND customerorder.orderStatus = '1' ;";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+                return $this -> res;
+        }
+        
+        public function setCompletedOrder($oid){
+            $this -> sql = "UPDATE `customerorder` SET `orderStatus` = '1' WHERE `customerorder`.`orderId` = '$oid' ;";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+                return $this -> res;
+        }
+        
+        public function getOrderDetailsByID($id){
+            $this -> sql = "SELECT product.productName, product.image, product.price, orderedproduct.qtn FROM orderedproduct,product WHERE orderedproduct.productId = product.productId AND orderedproduct.orderId = '$id' ;";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+                return $this -> res;
+        }
+        
+        public function getCustDetailsByOid($oid){
+            $this -> sql = "SELECT customer.custName, customer.number, customer.division, customer.district, customer.address, customerorder.orderDate FROM customerorder, customer WHERE customerorder.custId = customer.custId AND customerorder.orderId = '$oid' ";
             $this -> res = mysqli_query($this -> conn, $this -> sql);
                 return $this -> res;
         }

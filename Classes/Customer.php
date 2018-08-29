@@ -24,6 +24,12 @@ include_once($filepath.'/../Classes/Config.php');
         
         
         public function addCustomer($name, $email, $pass, $num, $divi, $dist, $add){
+            
+            $name = mysqli_real_escape_string($this -> conn, $name); 
+            $divi = mysqli_real_escape_string($this -> conn, $divi); 
+            $dist = mysqli_real_escape_string($this -> conn, $dist); 
+            $add  = mysqli_real_escape_string($this -> conn, $add);
+                
             $this -> sql = "INSERT INTO `customer` (`custId`, `custName`, `custEmail`, `custPass`, `number`, `division`, `district`, `address`) VALUES (NULL, '$name', '$email', '$pass', '$num', '$divi', '$dist', '$add');";
             $this -> res = mysqli_query($this -> conn, $this -> sql);
                 if($this -> res){
@@ -40,7 +46,7 @@ include_once($filepath.'/../Classes/Config.php');
                 $value = $this -> res -> fetch_assoc();
                 $_SESSION['custId'] = $value['custId'];
                 $_SESSION['custName'] = $value['custName'];
-                echo "<script type='text/javascript'>  window.location='index.php'; </script>";
+                echo "<script type='text/javascript'>  window.location='cart.php'; </script>";
                 exit();
             }else{
                 return "Email or password not match!";
@@ -68,6 +74,12 @@ include_once($filepath.'/../Classes/Config.php');
         
         public function changePassword($pass, $id){
             $this -> sql = "UPDATE `customer` SET `custPass` = '$pass' WHERE `customer`.`custId` = '$id' ;";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+                return $this -> res;
+        }
+        
+        public function getAllCust(){
+            $this -> sql = "SELECT * FROM customer ORDER BY custId DESC;";
             $this -> res = mysqli_query($this -> conn, $this -> sql);
                 return $this -> res;
         }

@@ -20,10 +20,13 @@
                             <td><a href="showbrand.php">Brand</a></td>
                         </tr>
                         <tr>
-                            <td><a href="#">Order</a></td>
+                            <td><a href="processingorder.php">Order</a></td>
                         </tr>
                         <tr>
-                            <td><a href="#">Customer</a></td>
+                            <td><a href="customerdetails.php">Customer</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="showreview.php">Review</a></td>
                         </tr>
                     </tbody>
                 </table>

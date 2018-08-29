@@ -6,6 +6,8 @@ include_once($filepath.'/../Classes/Category.php');
 include_once($filepath.'/../Classes/Brand.php');
 include_once($filepath.'/../Classes/Product.php');
 include_once($filepath.'/../Classes/Customer.php');
+include_once($filepath.'/../Classes/Order.php');
+include_once($filepath.'/../Classes/Productreview.php');
     
     $brand  = new Brand();
     $tbrand = $brand -> totalNumOfBrand();
@@ -18,6 +20,13 @@ include_once($filepath.'/../Classes/Customer.php');
 
     $cust   = new Customer();
     $tcust  = $cust -> getNumOfCustomer();
+    
+    $order  = new Order();
+    $getPo  = $order -> getTotalProcessingOrder();
+    $getCo  = $order -> getTotalCompleteOrder();
+
+    $pr = new Prodcutreview();
+    $tr = $pr -> getTotalReview();
 ?>
 <?php
 include('Library/sidebar.php');
@@ -47,19 +56,35 @@ include('Library/sidebar.php');
                 </div>
                 
                 <div class="col-md-4 col-sm-12 mgbottom20">
-                 <a class="circle-text" href="#">202<br/> orders completed</a>
+                 <a class="circle-text" href="completedorder.php"><?php
+                     if(isset($getCo)){
+                         echo $getCo;
+                     }
+                     ?><br/> orders completed</a>
                 </div>
                 
                 <div class="col-md-4 col-sm-12 mgbottom20">
-                 <a class="circle-text" href="#">202<br/> orders processing</a>
+                 <a class="circle-text" href="processingorder.php"><?php
+                     if(isset($getPo)){
+                         echo $getPo;
+                     }
+                     ?><br/> orders processing</a>
                 </div>
                 
                 <div class="col-md-4 col-sm-12 mgbottom20">
-                 <a class="circle-text" href="#"><?php
+                 <a class="circle-text" href="customerdetails.php"><?php
                     if(isset($tcust)){
                         echo $tcust;
                     }
                     ?><br/> customers</a>
+                </div>
+                
+                <div class="col-md-4 col-sm-12 mgbottom20">
+                 <a class="circle-text" href="showreview.php"><?php
+                     if(isset($tr)){
+                         echo $tr;
+                     }
+                     ?><br/> Reviews</a>
                 </div>
 
             </div>

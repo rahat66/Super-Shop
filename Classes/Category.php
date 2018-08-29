@@ -24,13 +24,15 @@ include_once($filepath.'/../Classes/Config.php');
         
         public function addCategory($catname){
             
+            $catname = mysqli_real_escape_string($this -> conn, $bname);
             
             $this -> sql = "SELECT catName FROM category WHERE catName = '$catname'; ";
             $this -> res = mysqli_query($this -> conn, $this -> sql);
             if($this -> res -> num_rows > 0){
                 return "all ready exist!!";
             }else{
-                            
+                 
+
             $this -> sql = "INSERT INTO `category` (`catId`, `catName`) VALUES (NULL, '$catname');";
             $this -> res = mysqli_query($this -> conn, $this -> sql);
 //            return $this -> res;

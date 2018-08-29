@@ -52,7 +52,7 @@ if(isset($_POST['cartUp'])){
                 <td><?php echo $i; ?></td>
                 <td><?php echo $result['productName']; ?></td>
                 <td><img class="img-responsive" src="admin/<?php echo $result['image']; ?>" width="30px" height="35px" /></td>
-                <td>$<?php echo $result['price']; ?></td>
+                <td>Tk.<?php echo $result['price']; ?></td>
                 <td>
                     <form action="" method="post">
                          <input type="hidden" value="<?php echo $result['cartId']; ?>" name="cartUp" readonly />
@@ -60,7 +60,7 @@ if(isset($_POST['cartUp'])){
                          <input class="btn-sm btn-primary" type="submit" value="Update" onclick="updateCart()" />
                     </form>
                 </td>
-                <td>$<?php echo $result['price'] * $result['qtn']; ?></td>
+                <td>Tk.<?php echo $result['price'] * $result['qtn']; ?></td>
                 <td>
                     <form action="" method="post" >
                         <input type="hidden" value="<?php echo $result['cartId']; ?>" name="cart_id" readonly />
@@ -72,7 +72,7 @@ if(isset($_POST['cartUp'])){
         </tbody>
                 <?php $total += $result['price'] * $result['qtn']; }} ?>
         <tfoot>
-            <td colspan="7"><p style="float:right;" >Total : $<?php echo $total;  ?></p></td>
+            <td colspan="7"><p style="float:right;" >Total : Tk.<?php echo $total;  ?></p></td>
         </tfoot>
 
     </table>

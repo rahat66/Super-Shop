@@ -50,5 +50,24 @@ include_once($filepath.'/../Classes/Config.php');
             return $this -> res;
     }
         
+    public function deleteReviewById($rid){
+        $this -> sql = "DELETE FROM `productreview` WHERE `productreview`.`reviewId` = '$rid';";
+        $this -> res = mysqli_query($this -> conn, $this -> sql);
+            return $this -> res;
+    }
+        
+    public function getTotalReview(){
+        $this -> sql = "SELECT COUNT(reviewId) AS 'totalreview' FROM productreview;";
+            $this -> res = mysqli_query($this -> conn, $this -> sql);
+            $ts = $this -> res -> fetch_assoc();
+                return $ts['totalreview'];
+    }
+        
+    public function getAllReview(){
+        $this -> sql = "SELECT productreview.*, product.productName, customer.custName FROM productreview, product, customer WHERE productreview.productId = product.productId AND productreview.custId = customer.custId;";
+        $this -> res = mysqli_query($this -> conn, $this -> sql);
+            return $this -> res;
+    }
+        
     }
 ?>

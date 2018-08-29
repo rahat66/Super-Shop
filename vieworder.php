@@ -40,9 +40,9 @@ $getCor = $order -> getOrderByCust($cId);
                     <tr>
                         <td><?php echo $i; ?></td>
                         <td><?php echo $value['orderDate']; ?></td>
-                        <td><?php echo $value['amount']; ?></td>
-                        <td><?php if($value['orderDate']) echo "processing"; else echo "Completed"; ?></td>
-                        <td><a href="#" class="btn btn-link" >Details</a></td>
+                        <td>Tk. <?php echo $value['amount']; ?></td>
+                        <td><?php if($value['orderStatus']==0) echo "processing"; else echo "Completed"; ?></td>
+                        <td><a href="orderdetails.php?oid=<?php echo $value['orderId']; ?>" class="btn btn-link" >Details</a></td>
                     </tr>
                     <?php }} ?>
                 </tbody>
